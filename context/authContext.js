@@ -23,4 +23,13 @@ export const AuthContextProvider=({children})=>{
             
         }
     }
+    const logout= async()=>{
+        try{
+
+        }catch(e){
+            
+        }
+    }
+
+    
 }
