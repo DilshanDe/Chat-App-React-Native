@@ -31,5 +31,17 @@ export const AuthContextProvider=({children})=>{
         }
     }
 
-    
+    const register= async(email,password,username,profileUrl)=>{
+        try{
+
+        }catch(e){
+            
+        }
+    }
+
+    return(
+        <AuthContext.Provider value={{user,isAuthenticated,login, register,logout}}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
