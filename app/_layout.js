@@ -10,6 +10,11 @@ const MainLayout = () => {
 
   useEffect(() => {
     // Check if user is authenticated or not
+    if(typeof isAuthenticated=='undefined')return;
+    const inApp=  segments[0]=='(app)';
+    if(isAuthenticated && !inApp){
+        
+    }
     [isAuthenticated];
   }, [isAuthenticated]);
 
