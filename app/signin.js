@@ -20,15 +20,29 @@ export default function SignIn() {
           <Text style={{fontSize:hp(4)}} className='font-bold tracking-wider text-center text-neutral-800'>Sign In</Text>
 
           {/*inputs*/}
-          <View style={{height:hp(7)}} className='flex-row gap-4 px-4 bg-neutral-100 items-center rounded-xl'>
-            <Octicons name='mail'size={hp(2.7)} color='gray'/>
-            <TextInput 
-            style={{fontSize:hp(2)}}
-            className='flex-1 font-semibold text-neutral-700'
-            placeholder='Enter your Email '
-            placeholderTextColor={'gray'}
-            />
+          <View className='gap-4'>
+              <View style={{height:hp(7)}} className='flex-row gap-4 px-4 bg-neutral-100 items-center rounded-xl'>
+                <Octicons name='mail'size={hp(2.7)} color='gray'/>
+                <TextInput 
+                style={{fontSize:hp(2)}}
+                className='flex-1 font-semibold text-neutral-700'
+                placeholder='Enter your Email '
+                placeholderTextColor={'gray'}
+                />
+              </View>
+              <View style={{height:hp(7)}} className='flex-row gap-4 px-4 bg-neutral-100 items-center rounded-xl'>
+                <Octicons name='mail'size={hp(2.7)} color='gray'/>
+                <TextInput 
+                style={{fontSize:hp(2)}}
+                className='flex-1 font-semibold text-neutral-700'
+                placeholder='Enter your Password '
+                placeholderTextColor={'gray'}
+                />
           </View>
+
+
+          </View>
+          
         </View>
       </View>
       
