@@ -15,10 +15,10 @@ export const AuthContextProvider=({children})=>{
     useEffect(()=>{
         //on authstae change
 
-        setTimeout(()=>{
-            setIsAuthenticated(true);
+        //setTimeout(()=>{
+            setIsAuthenticated(false);
 
-        },3000);
+        //},3000);
 
     },[])
 
