@@ -1,10 +1,11 @@
-import { View, Text, Image, TextInput, TouchableOpacity, Pressable } from 'react-native'
-import React from 'react'
+import { View, Text, Image, TextInput, TouchableOpacity, Pressable, Alert } from 'react-native'
+import React, { useState } from 'react'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { StatusBar } from 'expo-status-bar';
 import { Octicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useRef } from 'react';
+import Loading from '../components/Loading';
 
 export default function SignIn() {
    const router=useRouter();
@@ -12,15 +13,21 @@ export default function SignIn() {
 
    const emailRef=useRef('');
    const passwordRef=useRef('');
+   const[loading,setLoading]=useState(false);
 
 
    const handleLogin= async()=>{
+    if(!emailRef.current || !passwordRef.current){
+      Alert.alert('Sign In',"please fill all the fields.")
+      return;
+    }
+    //login process
 
    }
   return (
     <View className='flex-1'>
       <StatusBar style='dark'/>
-      <View style={{padding:hp(8),paddingHorizontal:wp(5)}} className='flex-1 gap-12 '>
+      <View style={{paddingTop:hp(8),paddingHorizontal:wp(5)}} className='flex-1 gap-12 '>
         {/*signin image*/}
         <View className='items-center'>
           <Image style={{height:hp(25)}} resizeMode='contain' source={require('../assets/images/login.png')}/>
@@ -47,8 +54,9 @@ export default function SignIn() {
                     <View style={{height:hp(7)}} className='flex-row gap-4 px-4 bg-neutral-100 items-center rounded-xl'>
                       <Octicons name='lock'size={hp(2.7)} color='gray'/>
                       <TextInput 
-                      onChangeText={value=>passwordRefRef.current=value}
+                      onChangeText={value=>passwordRef.current=value}
                       style={{fontSize:hp(2)}}
+                      secureTextEntry
                       className='flex-1 font-semibold text-neutral-700'
                       placeholder='Enter your Password '
                       placeholderTextColor={'gray'}
@@ -61,9 +69,26 @@ export default function SignIn() {
               </View>
 
               {/*submit button*/}
-              <TouchableOpacity onPress={handleLogin} style={{height:hp(6.5)}} className='bg-indigo-500 rounded-xl justify-center items-center'>
-                <Text stye={{fontSize:hp(3)}} className='text-white font-bold tracking-wider'>Sign In</Text>
-              </TouchableOpacity>
+
+              <View>
+                {
+                  loading?(
+                    <View className='flex-row justify-center'>
+                      <Loading size={hp(8)}/>
+                      </View>
+
+                  ):(
+                    
+                    <TouchableOpacity onPress={handleLogin} style={{height:hp(6.5)}} className='bg-indigo-500 rounded-xl justify-center items-center'>
+                    <Text stye={{fontSize:hp(3)}} className='text-white font-bold tracking-wider'>Sign In</Text>
+                  </TouchableOpacity>
+
+                  )
+
+                }
+              </View>
+
+
 
               {/*sign up text*/}
 
