@@ -6,6 +6,7 @@ import { Octicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useRef } from 'react';
 import Loading from '../components/Loading';
+import CustomKeyboardView from '../components/CustomKeyboardView';
 
 export default function SignIn() {
    const router=useRouter();
@@ -25,7 +26,7 @@ export default function SignIn() {
 
    }
   return (
-    <View className='flex-1'>
+    <CustomKeyboardView>
       <StatusBar style='dark'/>
       <View style={{paddingTop:hp(8),paddingHorizontal:wp(5)}} className='flex-1 gap-12 '>
         {/*signin image*/}
@@ -109,6 +110,6 @@ export default function SignIn() {
         </View>
       </View>
       
-    </View>
+    </CustomKeyboardView>
   )
 }
