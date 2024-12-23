@@ -25,7 +25,8 @@ export const AuthContextProvider=({children})=>{
             setUser(null);
 
         }
-       })
+       });
+       return unsub;
 
     },[])
 
