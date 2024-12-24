@@ -39,6 +39,9 @@ export const AuthContextProvider=({children})=>{
             return{success:true};
 
         }catch(e){
+            let msg=e.message;
+            if(msg.includes('(auth/invalid-email)')) msg='Invalid email'
+            return{success:false,msg};
             
         }
     }
