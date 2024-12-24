@@ -7,9 +7,11 @@ import { useRouter } from 'expo-router';
 import { useRef } from 'react';
 import Loading from '../components/Loading';
 import CustomKeyboardView from '../components/CustomKeyboardView';
+import { useAuth } from '../context/authContext';
 
 export default function SignUP() {
    const router=useRouter();
+   const {register}= useAuth();
 
 
    const emailRef=useRef('');
@@ -24,7 +26,15 @@ export default function SignUP() {
       Alert.alert('Sign Un',"please fill all the fields.")
       return;
     }
-    //register process
+    setLoading(true);
+
+    let response=await register(emailRef.current,passwordRef.current,usernameRef.current,profileRef.current);
+    setLoading(false);
+   
+    console.log('got result:',response);
+    if(!response.success){
+      Alert.alert('Sign Up',response.msg);
+    }
 
    }
   return (
