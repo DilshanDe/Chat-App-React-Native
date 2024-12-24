@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
@@ -35,6 +35,8 @@ export const AuthContextProvider=({children})=>{
 
     const login= async(email,password)=>{
         try{
+            const response= await signInWithEmailAndPassword(auth,email,password);
+            return{success:true};
 
         }catch(e){
             
