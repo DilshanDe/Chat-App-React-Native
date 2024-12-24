@@ -70,6 +70,7 @@ export const AuthContextProvider=({children})=>{
         }catch(e){
             let msg=e.message;
             if(msg.includes('(auth/invalid-email)')) msg='Invalid email'
+            if(msg.includes('(auth/email-already-in-use)')) msg='This email is already in use'
             return{success:false,msg};
             
         }
