@@ -4,6 +4,16 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { blurhash } from '../utils/comman';
+import { useAuth } from '../context/authContext';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+import { MenuItem } from './CustomMenuItems';
+import { AntDesign, Feather } from '@expo/vector-icons';
+
 
 
 
@@ -12,7 +22,17 @@ const ios=Platform.OS=='ios';
 
 export default function HomeHeader() {
 
+  const{user,logout}=useAuth();
+
     const{top}=useSafeAreaInsets();
+
+    const handleProfile=()=>{
+      
+    }
+
+    const handleLogout=async()=>{
+      await logout();
+    }
 
 
 
@@ -23,13 +43,37 @@ export default function HomeHeader() {
       </View>
 
       <View>
+          <Menu>
+            <MenuTrigger customStyles={{
+              triggerWrapper:{
+
+              }
+            }}>
             <Image
                 style={{height:hp(4.4) ,aspectRatio:1, borderRadius:100}}
-                source="https://picsum.photos/seed/696/3000/2000"
+                source={user?.profileUrl}
                 placeholder={blurhash}
-                
                 transition={500}
                 />
+
+
+            </MenuTrigger>
+              <MenuOptions>
+                <MenuItem
+                  text="Profile"
+                  action={handleProfile}
+                  value={null}
+                    icon={<Feather name='user'size={hp(2.5)} color='#737373'/>}
+                />
+                <MenuItem
+                  text="Sign Out"
+                  action={handleLogout}
+                  value={null}
+                    icon={<AntDesign name='logout'size={hp(2.5)} color='#737373'/>}
+                />
+            </MenuOptions>
+        </Menu>
+            
       </View>
     </View>
   )
