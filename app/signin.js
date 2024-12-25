@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import { useRef } from 'react';
 import Loading from '../components/Loading';
 import CustomKeyboardView from '../components/CustomKeyboardView';
+import { useAuth } from '../context/authContext';
 
 export default function SignIn() {
    const router=useRouter();
@@ -15,6 +16,7 @@ export default function SignIn() {
    const emailRef=useRef('');
    const passwordRef=useRef('');
    const[loading,setLoading]=useState(false);
+   const{login}= useAuth();
 
 
    const handleLogin= async()=>{
@@ -23,6 +25,13 @@ export default function SignIn() {
       return;
     }
     //login process
+    setLoading(true);
+    const response= await login(emailRef.current,passwordRef.current);
+    setLoading(false);
+    console.log('sign in response:',response);
+    if(!response.success){
+      Alert.alert('Sign In',response.msg);
+    }
 
    }
   return (
