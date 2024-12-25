@@ -65,6 +65,7 @@ export default function HomeHeader() {
                   value={null}
                     icon={<Feather name='user'size={hp(2.5)} color='#737373'/>}
                 />
+                <Divider/>
                 <MenuItem
                   text="Sign Out"
                   action={handleLogout}
@@ -76,5 +77,13 @@ export default function HomeHeader() {
             
       </View>
     </View>
+  )
+}
+
+const Divider=()=>{
+  return(
+    <View className='p-[1px] w-full bg-neutral-200'/>
+
+    
   )
 }
