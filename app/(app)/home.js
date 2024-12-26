@@ -5,10 +5,11 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 import Loading from '../../components/Loading';
 import ChatList from '../../components/ChatList';
+import { useState } from 'react';
 
 export default function Home() {
   const{logout,user}=useAuth();
-  const[sers,setUsers]=([1,2,3]);
+  const[users,setUsers]=useState([1,2,3]);
   const getUsers=async()=>{
     //fetach users
 
