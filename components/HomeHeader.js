@@ -58,7 +58,21 @@ export default function HomeHeader() {
 
 
             </MenuTrigger>
-              <MenuOptions>
+              <MenuOptions
+                customStyles={{
+                  optionsContainer:{
+                    borderRadius:10,
+                    borderCurve:'continuous',
+                    marginTop:40,
+                    marginLeft:-30,
+                    backgroundColor:"white",
+                    shadowOpacity:0.2,
+                    shadowOffset:{width:0,height:0},
+                    width:160
+                  }
+                }}           
+              
+              >
                 <MenuItem
                   text="Profile"
                   action={handleProfile}
