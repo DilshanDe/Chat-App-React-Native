@@ -7,6 +7,8 @@ import Loading from '../../components/Loading';
 import ChatList from '../../components/ChatList';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { getDocs, query, where } from 'firebase/firestore';
+import { userRef } from '../../firebaseConfig';
 
 export default function Home() {
   const{logout,user}=useAuth();
@@ -18,6 +20,15 @@ export default function Home() {
   },[])
   const getUsers=async()=>{
     //fetach users
+    const q=query(userRef,where('userId','!=',user?.uid));
+
+    const querySnapshot= await getDocs(q);
+    let data=[];
+    querySnapshot.forEach(doc=>{
+      data.push({...doc.data()});
+    });
+
+    console.log('got users:',data);
 
   }
   
