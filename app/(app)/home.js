@@ -12,7 +12,7 @@ import { userRef } from '../../firebaseConfig';
 
 export default function Home() {
   const{logout,user}=useAuth();
-  const[users,setUsers]=useState([1,2,3]);
+  const[users,setUsers]=useState([]);
   useEffect(()=>{
     if(user?.uid)
             getUsers();
@@ -28,7 +28,7 @@ export default function Home() {
       data.push({...doc.data()});
     });
 
-    console.log('got users:',data);
+    setUsers(data);
 
   }
   
