@@ -71,7 +71,7 @@ export default function ChatRoom() {
     }
 
   }
-  console.log('messages:',messages);
+  
   return (
     <CustomKeyboardView inChat={true}>
     <View className='flex-1 bg-white'>
