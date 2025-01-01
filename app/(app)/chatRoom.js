@@ -19,7 +19,10 @@ export default function ChatRoom() {
   const[messages,setMessages]=useState([]);
   const textRef=useRef('');
   const inputRef=useRef(null);
+  const scrollViewRef=useRef(null);
   
+
+
   useEffect(() => {
     createRoomIfNoExits();
 
@@ -82,6 +85,7 @@ export default function ChatRoom() {
       <View className='flex-1 justify-between bg-neutral-100 overflow-visible'>
         <View className='flex-1 '>
           <MessageList
+            scrollViewRef={scrollViewRef}
             messages={messages}
             currentUser={user}
 
