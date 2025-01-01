@@ -1,10 +1,36 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Image } from 'expo-image';
-import { blurhash } from '../utils/comman';
+import { blurhash, getRoomId } from '../utils/comman';
+import { useEffect } from 'react';
+import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
 
-export default function ChatItem({item,router,noBorder}) {
+export default function ChatItem({item,router,noBorder,currentUser}) {
+
+  const[lastMessage,setLastMessage]=useState(undefined);
+
+
+  useEffect(() => {
+      
+  
+      let roomId=getRoomId(currentUser?.userId,item?.userId);
+      const docRef=doc(db,'rooms',roomId);
+      const messagesRef=collection(docRef,"messages");
+      const q= query(messagesRef,orderBy('createdAt','desc'));
+  
+      let unsub= onSnapshot(q,(snapshot)=>{
+        let allMessages= snapshot.docs.map(doc=>{
+          return doc.data();
+        });
+        setLastMessage(allMessages[0]?allMessages[0]:null);
+  
+      });
+      return unsub;
+    }, []);
+
+    console.log('last message ',lastMessage);
 
   const openChatRoom=()=>{
     router.push({pathname:'/chatRoom',params:item});
