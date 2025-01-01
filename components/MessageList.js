@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import MessageItem from './MessageItem'
 
-export default function MessageList({messages}) {
+export default function MessageList({messages,currentUser}) {
   return (
     <ScrollView 
       showsVerticalScrollIndicator={false}
@@ -10,7 +10,7 @@ export default function MessageList({messages}) {
         {
           messages.map((message,index)=>{
             return(
-              <MessageItem message={message} key={index}/>
+              <MessageItem message={message} key={index} currentUser={currentUser}/>
             )
           })
         }
