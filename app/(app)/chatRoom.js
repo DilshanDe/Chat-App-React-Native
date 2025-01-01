@@ -64,7 +64,7 @@ export default function ChatRoom() {
         createdAt:Timestamp.fromDate(new Date())
       });
 
-      console.log('new message id',newDoc.id);
+      //console.log('new message id',newDoc.id);
 
     }catch(err){
       Alert.alert('Message',err.message);
@@ -82,6 +82,7 @@ export default function ChatRoom() {
         <View className='flex-1 '>
           <MessageList
             messages={messages}
+            currentUser={user}
 
             />
         </View>
