@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StatusBar, TextInput, TouchableOpacity, Alert, Keyboard } from 'react-native'
 import React, { useRef, useState } from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import ChatRoomHeader from '../../components/ChatRoomHeader';
@@ -38,8 +38,32 @@ export default function ChatRoom() {
       setMessages([...allMessages]);
 
     });
-    return unsub;
+
+        const keyboardDidShowListener = Keyboard.addListener(
+        'keyboardDidShow',updateScrollView
+      )
+      return()=>{
+        unsub();
+        keyboardDidShowListener.remove();
+        
+
+      }
+
+
+    
   }, []);
+
+  useEffect(()=>{
+    updateScrollView();
+
+  },[messages])
+
+  const updateScrollView=()=>{
+    setTimeout(()=>{
+      scrollViewRef?.current?.scrollToEnd({animated:true})
+
+    },100)
+  }
 
   const createRoomIfNoExits = async () => {
     // Generate room ID
